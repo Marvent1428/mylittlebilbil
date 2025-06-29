@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>~$ cinta.coding</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_92f0d92dfc.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="terminal">
+    <p class="typing" id="typing"></p>
+    <p class="output" id="quote">~$ (klik tombol untuk membuka isi hati buat Bilqis)</p>
+
+    <div class="btn-area">
+      <button onclick="gombal()" id="btn">confessTo(Bilqis)</button>
+      <a href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/confess.html" target="_blank">🔗 QR</a>
+    </div>
+  </div>
+
+  <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_32b038726d.mp3?filename=keyboard-typing-1-174477.mp3"></audio>
+
+  <script>
+    const teks = "> compiling perasaan buat Bilqis...";
+    const typingEl = document.getElementById("typing");
+    const sound = document.getElementById("typeSound");
+
+    let index = 0;
+    function ketik() {
+      if (index < teks.length) {
+        typingEl.innerHTML += teks.charAt(index);
+        sound.currentTime = 0;
+        sound.play();
+        index++;
+        setTimeout(ketik, 100);
+      }
+    }
+    ketik();
+
+    const quotes = [
+      "Bilqis, kamu kayak const yang nggak bisa kuubah — kamu tetap di hatiku.",
+      "Walau hidup penuh bug, cintaku ke kamu selalu compile tanpa error.",
+      "Kalau kamu class, aku private method yang cuma bisa kamu panggil.",
+      "Semua loop hatiku mengarah ke Bilqis;",
+      "Mau jadi co-author repo hidupku nggak, Bilqis?"
+    ];
+
+    function gombal() {
+      const el = document.getElementById("quote");
+      const btn = document.getElementById("btn");
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      el.innerText = "~$ " + random;
+      btn.innerText = "❤️";
+      btn.style.backgroundColor = "#ff4d88";
+      setTimeout(() => {
+        window.location.href = "confess.html";
+      }, 3000); // pindah ke confess page
+    }
+  </script>
+</body>
+</html>
